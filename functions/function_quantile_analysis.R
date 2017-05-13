@@ -35,7 +35,7 @@ if(method == "cut2"){
   
   # If outcome is continuous, model_type = "linear".
 if(model_type=="linear"){
-    colnames(tab) <- c("Quantile", "N", "Mean", "Adj. difference", "CI_lw", "CI_hi", "P")
+    colnames(tab) <- c("Quantile", "N", "Mean", "Adj. difference", "CI: lower", "CI: upper", "P")
     if(missing(covariates)){
       colnames(tab)[4] <- "Unadj. difference"
     }
@@ -60,7 +60,7 @@ if(model_type=="linear"){
     
   
 if(model_type=="logistic"){
-    colnames(tab) <- c("Quantile", "N", "Prop.", "Adj. OR", "CI_lw", "CI_hi", "P")
+    colnames(tab) <- c("Quantile", "N", "Prop.", "Adj. OR", "CI: lower", "CI: upper", "P")
     if(missing(covariates)){
       colnames(tab)[4] <- "Unadj. OR"
     }
