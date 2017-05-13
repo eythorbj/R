@@ -23,7 +23,7 @@ Fallið tekur eftirfarandi breytur:
 
 ## Skilgreining
 ```{r}
-source("functions/function_quantile_analysis.R")
+source("https://raw.githubusercontent.com/eythorbj/R/master/functions/function_quantile_analysis.R")
 ```
 
 ## Dæmi 1

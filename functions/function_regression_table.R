@@ -17,7 +17,10 @@ if(model_type=="linear"){
   
   ### Creating an empty table
     tab <- data.frame(matrix(ncol = 5))
-    colnames(tab) <- c("Predictors", "N", "beta", "95% CI", "P")
+    colnames(tab) <- c("Predictors", "N", "Adj. beta", "95% CI", "P")
+    if(missing(covariates)){
+      colnames(tab)[3] <- "Unadj. beta"
+    }
 
 ## Filling the table with adjusted results for each variable.
 for(i in 1:length(variables)){
@@ -35,6 +38,11 @@ for(i in 1:length(variables)){
 }
     tab <- tab[-1,]
     rownames(tab) <- NULL
+    if(missing(covariates)){
+      colnames(tab)[3] <- "Unadj. beta"
+    } else {
+      colnames(tab)[3] <- "Adj. beta"
+    }
     return(tab)
 } 
 
@@ -59,6 +67,11 @@ if(model_type=="logistic"){
   }
   tab <- tab[-1,]
   rownames(tab) <- NULL
+  if(missing(covariates)){
+    colnames(tab)[3] <- "Unadj. OR"
+  } else {
+    colnames(tab)[3] <- "Adj. OR"
+  }
   return(tab)
 } 
 } else {
@@ -80,6 +93,11 @@ if(model_type=="logistic"){
     colnames(lm_ci) <- c("Predictors", "N", "beta", "95% CI", "P")
     lm_ci$P <- as.character(lm_ci$P)
     rownames(lm_ci) <- NULL
+    if(missing(covariates)){
+      colnames(tab)[3] <- "Unadj. beta"
+    } else {
+      colnames(tab)[3] <- "Adj. beta"
+    }
     return(lm_ci)}
     
   ## Binary.
@@ -97,6 +115,11 @@ if(model_type=="logistic"){
     colnames(OR_ci) <- c("Predictors", "N", "OR", "95% CI", "P")
     OR_ci$P <- as.character(OR_ci$P)
     rownames(OR_ci) <- NULL
+    if(missing(covariates)){
+      colnames(tab)[3] <- "Unadj. OR"
+    } else {
+      colnames(tab)[3] <- "Adj. OR"
+    }
     return(OR_ci)
   }
 

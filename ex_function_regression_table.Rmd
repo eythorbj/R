@@ -16,7 +16,7 @@ Fallið tekur breytunar:
 
 ## Skilgreining
 ```{r}
-source("functions/function_regression_table.R")
+source("https://raw.githubusercontent.com/eythorbj/R/master/functions/function_regression_table.R")
 ```
 
 ## Dæmi 1

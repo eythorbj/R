@@ -8,7 +8,7 @@ documentclass: book
 ---
 
 # Inngangur
-Hér eru dæmi um notkun á föllum og skriftum í R sem ég hef búið til. Þau má finna á [GitHub](https://github.com/eythorbj/scripts-and-examples).
+Hér eru dæmi um notkun á föllum og skriftum í R sem ég hef búið til. Þau má finna á [GitHub](https://github.com/eythorbj/R).
 
 Þetta skjal er búið til með [bookdown](https://bookdown.org/yihui/bookdown/). Það er frábær pakki sem tvinnar saman R markdown skrár og setur saman í aðgengilegt html-bókarsnið.
 

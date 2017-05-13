@@ -13,7 +13,7 @@ Fallið tekur eftirfarandi breytur:
 
 ## Skilgreining
 ```{r}
-source("functions/function_table_one.R")
+source("https://raw.githubusercontent.com/eythorbj/R/master/functions/function_table_one.R")
 ```
 
 ## Dæmi 1
