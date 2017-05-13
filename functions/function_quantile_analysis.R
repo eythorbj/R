@@ -60,7 +60,7 @@ if(model_type=="linear"){
     
   
 if(model_type=="logistic"){
-    colnames(tab) <- c("Quantile", "N", "Prop.", "Adj. OR", "CI: lower", "CI: upper", "P")
+    colnames(tab) <- c("Quantile", "N", "Percent", "Adj. OR", "CI: lower", "CI: upper", "P")
     if(missing(covariates)){
       colnames(tab)[4] <- "Unadj. OR"
     }
