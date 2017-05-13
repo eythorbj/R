@@ -93,12 +93,13 @@ if(model_type=="logistic"){
     colnames(lm_ci) <- c("Predictors", "N", "beta", "95% CI", "P")
     lm_ci$P <- as.character(lm_ci$P)
     rownames(lm_ci) <- NULL
+    tab <- lm_ci
     if(missing(covariates)){
       colnames(tab)[3] <- "Unadj. beta"
     } else {
       colnames(tab)[3] <- "Adj. beta"
     }
-    return(lm_ci)}
+    return(tab)}
     
   ## Binary.
   if(model_type=="logistic"){
@@ -115,6 +116,7 @@ if(model_type=="logistic"){
     colnames(OR_ci) <- c("Predictors", "N", "OR", "95% CI", "P")
     OR_ci$P <- as.character(OR_ci$P)
     rownames(OR_ci) <- NULL
+    tab <- OR_ci
     if(missing(covariates)){
       colnames(tab)[3] <- "Unadj. OR"
     } else {
