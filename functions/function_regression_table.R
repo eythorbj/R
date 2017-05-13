@@ -122,7 +122,7 @@ if(model_type=="logistic"){
     } else {
       colnames(tab)[3] <- "Adj. OR"
     }
-    return(OR_ci)
+    return(tab)
   }
 
 } # end of else
