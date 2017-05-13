@@ -1,8 +1,8 @@
 # Föll í R
 
-Hér eru nokkur föll sem ég hef skrifað og hafa sparað mér tíma og vinnu. Þau má finna í möppunni `scripts/`.
+Hér eru dæmi um notkun á föllum sem ég hef skrifað og má finnaí möppunni `scripts/`. Þeta eru aðallega föll sem spara mikinn tíma við uppsetningu á algengum töflum fyrir vísindagreinar (á sviði læknavísinda) en eru líka hjálpleg til þess að átta sig á fylgni milli mismunandi breyta í gagnasafni.
 
 [**Leiðbeiningar og ítarleg dæmi má finna hér**](https://bookdown.org/eythorbj/Rfunctions/).
 
 ## Villur
-Trúlega er kóðinn óreiðukenndur á ýmsum stöðum en allt ætti þó að virka. Ef villur finnast má senda mér póst á eythor.bjoernsson@gmail.com.
+Trúlega er kóðinn óreiðukenndur á ýmsum stöðum og víða mætti hreinsa aðeins til en allt ætti þó að virka. Ef villur finnast má senda mér línu á eythor.bjoernsson@gmail.com.
