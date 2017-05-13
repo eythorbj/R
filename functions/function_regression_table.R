@@ -17,10 +17,7 @@ if(model_type=="linear"){
   
   ### Creating an empty table
     tab <- data.frame(matrix(ncol = 5))
-    colnames(tab) <- c("Predictors", "N", "Adj. beta", "95% CI", "P")
-    if(missing(covariates)){
-      colnames(tab)[3] <- "Unadj. beta"
-    }
+    colnames(tab) <- c("Predictors", "N", "beta", "95% CI", "P")
 
 ## Filling the table with adjusted results for each variable.
 for(i in 1:length(variables)){
