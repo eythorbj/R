@@ -1,6 +1,6 @@
 # Föll í R
 
-Hér eru dæmi um notkun á föllum sem ég hef skrifað og má finnaí möppunni `scripts/`. Þeta eru aðallega föll sem spara mikinn tíma við uppsetningu á algengum töflum fyrir vísindagreinar (á sviði læknavísinda) en eru líka hjálpleg til þess að átta sig á fylgni milli mismunandi breyta í gagnasafni.
+Hér eru dæmi um notkun á föllum sem ég hef skrifað og má finnaí möppunni `scripts/`. Þetta eru aðallega föll sem spara mikinn tíma við uppsetningu á algengum töflum fyrir vísindagreinar (á sviði læknavísinda) en eru líka hjálpleg til þess að átta sig á fylgni milli mismunandi breyta í gagnasafni.
 
 [**Leiðbeiningar og ítarleg dæmi má finna hér**](https://bookdown.org/eythorbj/Rfunctions/).
 
