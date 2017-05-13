@@ -1,0 +1,55 @@
+# `table_one`
+
+## Lýsing
+`table_one` er fall sem skilar töflu þar sem valdar breytur eru bornar saman eftir gildum ákveðinnar breytu. Fyrir samfelldar breytur fáum við meðaltöl og staðalfrávik, fyrir tvíkosta breytur eru gefnar prósentur (hlutfall gilda sem eru '1'). Þetta er dæmigerð 'tafla eitt' í vísindagrein.
+
+## Breytur
+Fallið tekur eftirfarandi breytur:
+
+* `data`
+* `var_cont`: vigur með heitum á samfelldum breytum.
+* `var_bin`: vigur með heitum á tvíkosta breytum (þurfa að taka gildin 0 eða 1).
+* `comparing`: heiti flokkabreytu sem skilgreinir dálka í töflunni. Getur tekið tvö eða fleiri gildi.
+
+## Skilgreining
+```{r}
+source("functions/function_table_one.R")
+```
+
+## Dæmi 1
+```{r}
+var_cont <- c("age", "weight", "waist", "chol", "stab.glu", "hdl", "ratio", "bp.1s")
+var_bin <- c("male")
+comparing <- "dm"
+
+table_one(data = data, var_cont = var_cont, var_bin = var_bin, comparing = comparing) %>%
+  kable(align = 'c', caption = "Patient characteristics") %>%
+  add_header_above(c(" " = 2, "Diabetes mellitus" = 2))
+```
+
+## Dæmi 2
+Flokkað eftir breytu með þrjú möguleg gildi.
+```{r}
+var_cont <- c("age", "weight", "waist", "chol", "stab.glu", "hdl", "ratio", "bp.1s")
+var_bin <- c("male", "dm")
+comparing <- "frame"
+
+table_one(data = data, var_cont = var_cont, var_bin = var_bin, comparing = comparing) %>%
+  kable(align = 'c', caption = "Patient characteristics") %>%
+  add_header_above(c(" " = 2, "Frame" = 3))
+```
+
+## Dæmi 3
+Engar flokkabreytur.
+```{r}
+var_cont <- c("age", "weight", "waist")
+comparing <- "frame"
+
+table_one(data = data, var_cont = var_cont, comparing = comparing) %>%
+  kable(align = 'c', caption = "Patient characteristics") %>%
+  add_header_above(c(" " = 2, "Frame" = 3))
+```
+
+
+
+

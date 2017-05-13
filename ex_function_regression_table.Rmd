@@ -1,0 +1,66 @@
+# `regression_table`
+
+## Lýsing
+Með `regression_table` er einfalt og fljótlegt að búa til stíhreina töflu fyrir niðurstöður úr línulegu eða tvíkosta (*logistic*) aðhvarfi. Hægt er að skilgreina eitt fjölþátta líkan og birta niðurstöður fyrir allar skýribreyturnar í því líkani, sem er áþekkt `summary(lm(...))`. Einnig er hægt að keyra lista af skýribreytum gegnum líkanið og birta niðurstöður fyrir hverja þeirra í einni og sömu töflunni.
+
+95% öryggisbil eru reiknuð með `confint` skipuninni.
+
+## Breytur
+Fallið tekur breytunar:
+
+* `variables`: vigri með einni eða fleiri skýribreytum sem við höfum áhuga á. Ef ein breyta er tilgreind eru birtar niðurstöður fyrir þá breytu ásamt öðrum skýribreytum í líkaninu (tilgreindar í `covariates`), t.d. eitt fjölþátta líkan. Ef fleiri breytur eru tilgreindar eru birtar niðurstöður fyrir hverja og eina þeirra, þar sem leiðrétt er fyrir breytunum í `covariates`.
+* `outcome`: svarbreytan í líkaninu.
+* `covariates`: vigri með skýribreytum til þess að leiðrétta fyrir. Sleppa má `covariates` til þess að fá óleiðréttar niðurstöður.
+* `model_type`: Tekur gildið `linear` fyrir línulegt aðhvarf (notar `lm`) og `logistic` við tvíkosta aðhvarf (notar `glm` með `family = binomial`).
+* `data`
+
+## Skilgreining
+```{r}
+source("functions/function_regression_table.R")
+```
+
+## Dæmi 1
+Óleiðrétt fylgni kviðarummáls við sykursýki, tvíkosta aðhvarf.
+```{r}
+regression_table(variables = "waist", outcome = "dm==1", model_type = "logistic", data = data) %>%
+  kable(align='c', caption = "Unadjusted model")  %>%
+  kable_styling(full_width = F) %>%
+  add_header_above(c(" " = 2, "Diabetes mellitus" = 3))
+```
+
+Sjáum líka óleiðrétta fylgni fyrir aldur og hdl.
+```{r}
+regression_table(variables = c("waist", "age", "hdl"), outcome = "dm==1", model_type = "logistic", data = data) %>%
+  kable(align='c', caption = "Unadjusted models") %>%
+  kable_styling(full_width = F) %>%
+  add_header_above(c(" " = 2, "Diabetes mellitus" = 3))
+```
+
+## Dæmi 2
+Fyglni kviðarummáls við sykrað hemóglóbín, leiðrétt fyrir aldri og kyni. Þar sem aðeins ein breyta er tilgreind í `variables` skilar fallið niðurstöðum fyrir allar breytur í líkaninu, svipað og `summary(lm(...))`.
+```{r}
+regression_table(variables = "waist", outcome = "glyhb", covariates = c("age", "gender"), model_type = "linear", data = data) %>%
+  kable(align='c', caption = "Multivariate model") %>% 
+  kable_styling(full_width = F) %>%
+  add_header_above(c(" " = 2, "HbA1c (%)" = 3))
+```
+
+Ef við tilgreinum fleiri breytur í `variables` fáum við fylgni fyrir hverja og eina þeirra við sykrað hemógóbín, þar sem leiðrétt fyrir aldri og kyni hverju sinni.
+```{r}
+regression_table(variables = c("waist", "chol", "hdl", "weight"), outcome = "glyhb", covariates = c("age", "gender"), model_type = "linear", data = data) %>%
+  kable(align='c', caption = "Each model adjusted for age and sex") %>%
+  kable_styling(full_width = F) %>%
+  add_header_above(c(" " = 2, "HbA1c (%)" = 3))
+```
+
+## Dæmi 3
+Hægt er að skilgreina breyturnar á sama hátt og þegar unnið er með `lm` og `glm`. T.d. má staðla breytu með `scale()` (þar sem einingin jafngildir einu staðalfráviki) eða umbreyta samfelldri breytu í tvíkosta breytu með því að tilgreina þröskuld.
+```{r}
+regression_table(variables = c("scale(waist)", "(chol>250)", "(hdl<30)", "weight"), outcome = "(glyhb>7.5)", covariates = c("age", "gender"), model_type = "logistic", data = data) %>%
+  kable(align='c', caption = "Each model adjusted for age and sex") %>%
+  kable_styling(full_width = F) %>%
+  add_header_above(c(" " = 2, "HbA1c > 7.5%" = 3))
+```
+
+
+

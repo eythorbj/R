@@ -1,0 +1,73 @@
+# `quantile_analysis`
+
+## Lýsing
+`quantile_analysis` er fall sem skiptir í jafna hópa eftir raðaðri breytu (*e. quantiles*: s.s. þriðjunga, fjórðunga, fimmtunga o.s.frv) og skilar töflu fyrir tengsl þeirra við svarbreytu. Það höndlar samfelldar og tvíkosta svarbreytur og mögulegt er að leiðrétta fyrir öðrum skýribreytum.
+
+Fyrir samfelldar svarbreytur er `lm` notað og fyrir tvíkosta breytur hefðbundið tvíkosta aðhvarf með `glm` með `family=binomial`. Við samanburð á hópum er alltaf miðað við neðsta hópinn (t.d. neðsta fimmtung) og því skilgreindur undirhópur fyrir hvert aðhvarfslíkan: `subset = quantile %in% c(1,i)`, þar sem *i* er hópurinn sem bera á saman við hóp eitt.
+
+95% öryggisbil eru reiknuð með `confint` skipuninni.
+
+## Breytur
+Fallið tekur eftirfarandi breytur:
+
+* `variable`: breytan sem liggur til grundvallar við skiptingu í hópa (*quantiles*).
+* `n_quantiles`: fjöldi hópa.
+* `method`: Aðferðin til þess að skipta í hópa út frá röðuðum gögnum. `cut2` er sjálfgefið, vísar til `Hmisc::cut2` sem skiptir í nokkurn veginn jafna hópa (fjöldi tilgreindur með `g=`), þannig að engin gildi koma fyrir í fleiri en einum hóp. Hægt er að velja `ntile` sem vísar til `dplyr::ntile` sem skiptir í jafna hópa en leyfir það að sömu gildi geta komið fyrir í aðlægum hópum., ólíkt `cut2`.
+* `outcome`: svarbreytan. Getur verið samfelld eða tvíkosta.
+* `model_type`: `linear` fyrir samfellda svarbreytu en `logistic` fyrir tvíkosta svarbreytu.
+* `covariates`: vigri með skýribreytum til þess að leiðrétta fyrir í fjölbreytulíkani. Má sleppa til þess að fá einbreytulíkan.
+* `data`
+
+**ATH** Fallið notar pakkana `Hmisc` og `dplyr`.
+
+
+## Skilgreining
+```{r}
+source("functions/function_quantile_analysis.R")
+```
+
+## Dæmi 1
+Skiptum kviðarummáli í fimmtunga og skoðum tengsl þeirra við sykursýki. Ekki er leiðrétt fyrir öðrum breytum.
+```{r}
+quantile_analysis(variable = "waist",
+                  n_quantiles = 5,
+                  outcome = "dm",
+                  model_type = "logistic",
+                  data = data) %>%
+  kable(align = 'c', caption = "Unadjusted association of waist circumference quintiles with diabetes mellitus") %>%
+  add_header_above(c(" "=2, "Diabetes mellitus" = 5))
+```
+
+Dálkarnir í töflunni að ofan (frá vinstri til hægri) sýna fimmtunga (fyrsti hefur minnst kviðarummál), fjölda í hverjum fimmtungi, hlutfall (pósentur) með sykursýki í hverjum fimmtungi, OR reiknað miðað við fyrsta fimmtung (merktur með "ref", *reference*), svo neðri og efri mörk 95% öryggisbils fyrir OR og loks p-gildi.
+
+Skoðum betur hvernig fimmtungar voru skilgreindir í fallinu með `cut2`, hér frá grunni þar sem fallið býr aðeins til fimmtungana tímabundið og breytir ekki upphaflegu gagnasettinu.
+
+```{r}
+data %>% mutate(quantile = as.numeric(cut2(waist, g=5))) %>% group_by(quantile) %>% summarise(n(), mean(waist), min(waist), max(waist)) %>% kable
+```
+
+## Dæmi 2
+Skoðum nú þriðjunga kviðarummáls og tengsl við sykursýki, en leiðréttum fyrir aldri og kyni.
+```{r}
+quantile_analysis(variable = "waist",
+                  n_quantiles = 3,
+                  outcome = "dm",
+                  model_type = "logistic",
+                  covariates = c("age", "gender"),
+                  data = data) %>%
+  kable(align = 'c', caption = "Association of waist circumference tertiles with diabetes mellitus, adjusted for age and sex") %>%
+  add_header_above(c(" "=2, "Diabetes mellitus" = 5))
+```
+
+## Dæmi 3
+Skoðum HDL-kólesteról eftir þriðjungum sykraðs hemóglóbíns. ATH þetta er samfelld breyta svo í samanburði milli fjórðunga fáum við beinan mismun í óleiðréttu líkani.
+```{r}
+quantile_analysis(variable = "glyhb",
+                  n_quantiles = 4,
+                  outcome = "hdl",
+                  model_type = "linear",
+                  data = data) %>%
+  kable(align = 'c', caption = "Unadjusted association of HbA1c quartiles with HDL-cholesterol") %>%
+  add_header_above(c(" "=2, "HDL-cholesterol" = 5))
+```
+

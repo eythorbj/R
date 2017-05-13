@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Föll í R - Dæmi</title>
+  <meta name="description" content="Föll í R - Dæmi">
+  <meta name="generator" content="bookdown 0.3.19 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Föll í R - Dæmi" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Föll í R - Dæmi" />
+  
+  
+  
+
+<meta name="author" content="Eyþór Björnsson">
+
+
+<meta name="date" content="2017-05-13">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="regression-table.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Inngangur</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#pakkar"><i class="fa fa-check"></i><b>1.1</b> Pakkar</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#gagnasett"><i class="fa fa-check"></i><b>1.2</b> Gagnasett</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#fallegar-toflur"><i class="fa fa-check"></i><b>1.3</b> Fallegar töflur</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="quantile-analysis.html"><a href="quantile-analysis.html"><i class="fa fa-check"></i><b>2</b> <code>quantile_analysis</code></a><ul>
+<li class="chapter" data-level="2.1" data-path="quantile-analysis.html"><a href="quantile-analysis.html#lysing"><i class="fa fa-check"></i><b>2.1</b> Lýsing</a></li>
+<li class="chapter" data-level="2.2" data-path="quantile-analysis.html"><a href="quantile-analysis.html#breytur"><i class="fa fa-check"></i><b>2.2</b> Breytur</a></li>
+<li class="chapter" data-level="2.3" data-path="quantile-analysis.html"><a href="quantile-analysis.html#skilgreining"><i class="fa fa-check"></i><b>2.3</b> Skilgreining</a></li>
+<li class="chapter" data-level="2.4" data-path="quantile-analysis.html"><a href="quantile-analysis.html#dmi-1"><i class="fa fa-check"></i><b>2.4</b> Dæmi 1</a></li>
+<li class="chapter" data-level="2.5" data-path="quantile-analysis.html"><a href="quantile-analysis.html#dmi-2"><i class="fa fa-check"></i><b>2.5</b> Dæmi 2</a></li>
+<li class="chapter" data-level="2.6" data-path="quantile-analysis.html"><a href="quantile-analysis.html#dmi-3"><i class="fa fa-check"></i><b>2.6</b> Dæmi 3</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="regression-table.html"><a href="regression-table.html"><i class="fa fa-check"></i><b>3</b> <code>regression_table</code></a><ul>
+<li class="chapter" data-level="3.1" data-path="regression-table.html"><a href="regression-table.html#lysing-1"><i class="fa fa-check"></i><b>3.1</b> Lýsing</a></li>
+<li class="chapter" data-level="3.2" data-path="regression-table.html"><a href="regression-table.html#breytur-1"><i class="fa fa-check"></i><b>3.2</b> Breytur</a></li>
+<li class="chapter" data-level="3.3" data-path="regression-table.html"><a href="regression-table.html#skilgreining-1"><i class="fa fa-check"></i><b>3.3</b> Skilgreining</a></li>
+<li class="chapter" data-level="3.4" data-path="regression-table.html"><a href="regression-table.html#dmi-1-1"><i class="fa fa-check"></i><b>3.4</b> Dæmi 1</a></li>
+<li class="chapter" data-level="3.5" data-path="regression-table.html"><a href="regression-table.html#dmi-2-1"><i class="fa fa-check"></i><b>3.5</b> Dæmi 2</a></li>
+<li class="chapter" data-level="3.6" data-path="regression-table.html"><a href="regression-table.html#dmi-3-1"><i class="fa fa-check"></i><b>3.6</b> Dæmi 3</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="table-one.html"><a href="table-one.html"><i class="fa fa-check"></i><b>4</b> <code>table_one</code></a><ul>
+<li class="chapter" data-level="4.1" data-path="table-one.html"><a href="table-one.html#lysing-2"><i class="fa fa-check"></i><b>4.1</b> Lýsing</a></li>
+<li class="chapter" data-level="4.2" data-path="table-one.html"><a href="table-one.html#breytur-2"><i class="fa fa-check"></i><b>4.2</b> Breytur</a></li>
+<li class="chapter" data-level="4.3" data-path="table-one.html"><a href="table-one.html#skilgreining-2"><i class="fa fa-check"></i><b>4.3</b> Skilgreining</a></li>
+<li class="chapter" data-level="4.4" data-path="table-one.html"><a href="table-one.html#dmi-1-2"><i class="fa fa-check"></i><b>4.4</b> Dæmi 1</a></li>
+<li class="chapter" data-level="4.5" data-path="table-one.html"><a href="table-one.html#dmi-2-2"><i class="fa fa-check"></i><b>4.5</b> Dæmi 2</a></li>
+<li class="chapter" data-level="4.6" data-path="table-one.html"><a href="table-one.html#dmi-3-2"><i class="fa fa-check"></i><b>4.6</b> Dæmi 3</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Föll í R - Dæmi</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="table_one" class="section level1">
+<h1><span class="header-section-number">4</span> <code>table_one</code></h1>
+<div id="lysing-2" class="section level2">
+<h2><span class="header-section-number">4.1</span> Lýsing</h2>
+<p><code>table_one</code> er fall sem skilar töflu þar sem valdar breytur eru bornar saman eftir gildum ákveðinnar breytu. Fyrir samfelldar breytur fáum við meðaltöl og staðalfrávik, fyrir tvíkosta breytur eru gefnar prósentur (hlutfall gilda sem eru ‘1’). Þetta er dæmigerð ‘tafla eitt’ í vísindagrein.</p>
+</div>
+<div id="breytur-2" class="section level2">
+<h2><span class="header-section-number">4.2</span> Breytur</h2>
+<p>Fallið tekur eftirfarandi breytur:</p>
+<ul>
+<li><code>data</code></li>
+<li><code>var_cont</code>: vigur með heitum á samfelldum breytum.</li>
+<li><code>var_bin</code>: vigur með heitum á tvíkosta breytum (þurfa að taka gildin 0 eða 1).</li>
+<li><code>comparing</code>: heiti flokkabreytu sem skilgreinir dálka í töflunni. Getur tekið tvö eða fleiri gildi.</li>
+</ul>
+</div>
+<div id="skilgreining-2" class="section level2">
+<h2><span class="header-section-number">4.3</span> Skilgreining</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;functions/function_table_one.R&quot;</span>)</code></pre></div>
+</div>
+<div id="dmi-1-2" class="section level2">
+<h2><span class="header-section-number">4.4</span> Dæmi 1</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">var_cont &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;weight&quot;</span>, <span class="st">&quot;waist&quot;</span>, <span class="st">&quot;chol&quot;</span>, <span class="st">&quot;stab.glu&quot;</span>, <span class="st">&quot;hdl&quot;</span>, <span class="st">&quot;ratio&quot;</span>, <span class="st">&quot;bp.1s&quot;</span>)
+var_bin &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;male&quot;</span>)
+comparing &lt;-<span class="st"> &quot;dm&quot;</span>
+
+<span class="kw">table_one</span>(<span class="dt">data =</span> data, <span class="dt">var_cont =</span> var_cont, <span class="dt">var_bin =</span> var_bin, <span class="dt">comparing =</span> comparing) %&gt;%
+<span class="st">  </span><span class="kw">kable</span>(<span class="dt">align =</span> <span class="st">&#39;c&#39;</span>, <span class="dt">caption =</span> <span class="st">&quot;Patient characteristics&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Diabetes mellitus&quot;</span> =<span class="st"> </span><span class="dv">2</span>))</code></pre></div>
+<?xml version="1.0" encoding="UTF-8"?>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-15">Table 4.1: </span>Patient characteristics
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;" colspan="2">
+</th>
+<th style="text-align:center;" colspan="2">
+Diabetes mellitus
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+Variable
+</th>
+<th style="text-align:center;">
+Statistic
+</th>
+<th style="text-align:center;">
+0
+</th>
+<th style="text-align:center;">
+1
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+n
+</td>
+<td style="text-align:center;">
+330
+</td>
+<td style="text-align:center;">
+60
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+age
+</td>
+<td style="text-align:center;">
+Mean (SD)
+</td>
+<td style="text-align:center;">
+44.66 (16.11)
+</td>
+<td style="text-align:center;">
+58.4 (13.12)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+weight
+</td>
+<td style="text-align:center;">
+Mean (SD)
+</td>
+<td style="text-align:center;">
+174.6 (39.84)
+</td>
+<td style="text-align:center;">
+192.71 (40.68)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+waist
+</td>
+<td style="text-align:center;">
+Mean (SD)
+</td>
+<td style="text-align:center;">
+37.35 (5.6)
+</td>
+<td style="text-align:center;">
+40.88 (5.75)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+chol
+</td>
+<td style="text-align:center;">
+Mean (SD)
+</td>
+<td style="text-align:center;">
+203.39 (41.14)
+</td>
+<td style="text-align:center;">
+228.6 (56.53)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+stab.glu
+</td>
+<td style="text-align:center;">
+Mean (SD)
+</td>
+<td style="text-align:center;">
+91.55 (26.87)
+</td>
+<td style="text-align:center;">
+194.17 (77.44)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+hdl
+</td>
+<td style="text-align:center;">
+Mean (SD)
+</td>
+<td style="text-align:center;">
+51.18 (17.25)
+</td>
+<td style="text-align:center;">
+45.28 (16.85)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+ratio
+</td>
+<td style="text-align:center;">
+Mean (SD)
+</td>
+<td style="text-align:center;">
+4.32 (1.44)
+</td>
+<td style="text-align:center;">
+5.63 (2.63)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+bp.1s
+</td>
+<td style="text-align:center;">
+Mean (SD)
+</td>
+<td style="text-align:center;">
+135.19 (22.93)
+</td>
+<td style="text-align:center;">
+147.77 (20.5)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+male
+</td>
+<td style="text-align:center;">
+Percentage
+</td>
+<td style="text-align:center;">
+41.21
+</td>
+<td style="text-align:center;">
+43.33
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="dmi-2-2" class="section level2">
+<h2><span class="header-section-number">4.5</span> Dæmi 2</h2>
+<p>Flokkað eftir breytu með þrjú möguleg gildi.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">var_cont &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;weight&quot;</span>, <span class="st">&quot;waist&quot;</span>, <span class="st">&quot;chol&quot;</span>, <span class="st">&quot;stab.glu&quot;</span>, <span class="st">&quot;hdl&quot;</span>, <span class="st">&quot;ratio&quot;</span>, <span class="st">&quot;bp.1s&quot;</span>)
+var_bin &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;dm&quot;</span>)
+comparing &lt;-<span class="st"> &quot;frame&quot;</span>
+
+<span class="kw">table_one</span>(<span class="dt">data =</span> data, <span class="dt">var_cont =</span> var_cont, <span class="dt">var_bin =</span> var_bin, <span class="dt">comparing =</span> comparing) %&gt;%
+<span class="st">  </span><span class="kw">kable</span>(<span class="dt">align =</span> <span class="st">&#39;c&#39;</span>, <span class="dt">caption =</span> <span class="st">&quot;Patient characteristics&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Frame&quot;</span> =<span class="st"> </span><span class="dv">3</span>))</code></pre></div>
+<?xml version="1.0" encoding="UTF-8"?>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-16">Table 4.2: </span>Patient characteristics
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;" colspan="2">
+</th>
+<th style="text-align:center;" colspan="3">
+Frame
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+Variable
+</th>
+<th style="text-align:center;">
+Statistic
+</th>
+<th style="text-align:center;">
+large
+</th>
+<th style="text-align:center;">
+medium
+</th>
+<th style="text-align:center;">
+small
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+n
+</td>
+<td style="text-align:center;">
+103
+</td>
+<td style="text-align:center;">
+184
+</td>
+<td style="text-align:center;">
+104
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+age
+</td>
+<td style="text-align:center;">
+Mean (SD)
+</td>
+<td style="text-align:center;">
+52.84 (15.77)
+</td>
+<td style="text-align:center;">
+45.71 (15.39)
+</td>
+<td style="text-align:center;">
+42.21 (15.54)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+weight
+</td>
+<td style="text-align:center;">
+Mean (SD)
+</td>
+<td style="text-align:center;">
+203.81 (43.19)
+</td>
+<td style="text-align:center;">
+178.31 (33.85)
+</td>
+<td style="text-align:center;">
+150.96 (29.99)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+waist
+</td>
+<td style="text-align:center;">
+Mean (SD)
+</td>
+<td style="text-align:center;">
+41.82 (5.53)
+</td>
+<td style="text-align:center;">
+37.89 (4.98)
+</td>
+<td style="text-align:center;">
+34.05 (4.62)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+chol
+</td>
+<td style="text-align:center;">
+Mean (SD)
+</td>
+<td style="text-align:center;">
+208 (43.25)
+</td>
+<td style="text-align:center;">
+213.54 (45.76)
+</td>
+<td style="text-align:center;">
+197.5 (39.13)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+stab.glu
+</td>
+<td style="text-align:center;">
+Mean (SD)
+</td>
+<td style="text-align:center;">
+121.2 (63.68)
+</td>
+<td style="text-align:center;">
+104.29 (49.88)
+</td>
+<td style="text-align:center;">
+95.97 (44.38)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+hdl
+</td>
+<td style="text-align:center;">
+Mean (SD)
+</td>
+<td style="text-align:center;">
+44.6 (13.36)
+</td>
+<td style="text-align:center;">
+50.8 (17.44)
+</td>
+<td style="text-align:center;">
+55.54 (17.72)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+ratio
+</td>
+<td style="text-align:center;">
+Mean (SD)
+</td>
+<td style="text-align:center;">
+4.99 (1.5)
+</td>
+<td style="text-align:center;">
+4.64 (1.95)
+</td>
+<td style="text-align:center;">
+3.85 (1.27)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+bp.1s
+</td>
+<td style="text-align:center;">
+Mean (SD)
+</td>
+<td style="text-align:center;">
+141.18 (19.81)
+</td>
+<td style="text-align:center;">
+137.76 (24.27)
+</td>
+<td style="text-align:center;">
+130.03 (21.16)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+male
+</td>
+<td style="text-align:center;">
+Percentage
+</td>
+<td style="text-align:center;">
+59.22
+</td>
+<td style="text-align:center;">
+36.96
+</td>
+<td style="text-align:center;">
+33.65
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+dm
+</td>
+<td style="text-align:center;">
+Percentage
+</td>
+<td style="text-align:center;">
+23.23
+</td>
+<td style="text-align:center;">
+14.61
+</td>
+<td style="text-align:center;">
+8.82
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="dmi-3-2" class="section level2">
+<h2><span class="header-section-number">4.6</span> Dæmi 3</h2>
+<p>Engar flokkabreytur.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">var_cont &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;weight&quot;</span>, <span class="st">&quot;waist&quot;</span>)
+comparing &lt;-<span class="st"> &quot;frame&quot;</span>
+
+<span class="kw">table_one</span>(<span class="dt">data =</span> data, <span class="dt">var_cont =</span> var_cont, <span class="dt">comparing =</span> comparing) %&gt;%
+<span class="st">  </span><span class="kw">kable</span>(<span class="dt">align =</span> <span class="st">&#39;c&#39;</span>, <span class="dt">caption =</span> <span class="st">&quot;Patient characteristics&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Frame&quot;</span> =<span class="st"> </span><span class="dv">3</span>))</code></pre></div>
+<?xml version="1.0" encoding="UTF-8"?>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-17">Table 4.3: </span>Patient characteristics
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;" colspan="2">
+</th>
+<th style="text-align:center;" colspan="3">
+Frame
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+Variable
+</th>
+<th style="text-align:center;">
+Statistic
+</th>
+<th style="text-align:center;">
+large
+</th>
+<th style="text-align:center;">
+medium
+</th>
+<th style="text-align:center;">
+small
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+n
+</td>
+<td style="text-align:center;">
+103
+</td>
+<td style="text-align:center;">
+184
+</td>
+<td style="text-align:center;">
+104
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+age
+</td>
+<td style="text-align:center;">
+Mean (SD)
+</td>
+<td style="text-align:center;">
+52.84 (15.77)
+</td>
+<td style="text-align:center;">
+45.71 (15.39)
+</td>
+<td style="text-align:center;">
+42.21 (15.54)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+weight
+</td>
+<td style="text-align:center;">
+Mean (SD)
+</td>
+<td style="text-align:center;">
+203.81 (43.19)
+</td>
+<td style="text-align:center;">
+178.31 (33.85)
+</td>
+<td style="text-align:center;">
+150.96 (29.99)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+waist
+</td>
+<td style="text-align:center;">
+Mean (SD)
+</td>
+<td style="text-align:center;">
+41.82 (5.53)
+</td>
+<td style="text-align:center;">
+37.89 (4.98)
+</td>
+<td style="text-align:center;">
+34.05 (4.62)
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regression-table.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
