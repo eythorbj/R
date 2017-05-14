@@ -7,20 +7,20 @@ output: bookdown::gitbook
 documentclass: book
 ---
 
-# Inngangur
+# Inngangur {-}
 Hér eru dæmi um notkun á föllum sem ég hef skrifað og má finna á [GitHub](https://github.com/eythorbj/R). Þetta eru aðallega föll sem spara mikinn tíma við uppsetningu á algengum töflum fyrir vísindagreinar (á sviði læknavísinda) en eru líka hjálpleg til þess að átta sig á fylgni milli mismunandi breyta í gagnasafninu.
 
 Þetta skjal er búið til með [bookdown](https://bookdown.org/yihui/bookdown/). Það er frábær pakki sem tvinnar saman R markdown skrár og setur saman í aðgengilegt html-bókarsnið.
 
 
-## Pakkar
+## Pakkar {-}
 
 ```{r, message=FALSE, warning=TRUE}
 library(dplyr); library(knitr); library(kableExtra)
 options(knitr.table.format = "html")
 ```
 
-## Gagnasett
+## Gagnasett {-}
 Í öllum dæmunum er notast við 'diabetes' gagnasettið sem er aðgengilegt frá http://biostat.mc.vanderbilt.edu/wiki/Main/DataSets. 
 
 > The data consist of 19 variables on 403 subjects from 1046 subjects who were interviewed in a study to understand the prevalence of obesity, diabetes, and other cardiovascular risk factors in central Virginia for African Americans. According to Dr John Hong, Diabetes Mellitus Type II (adult onset diabetes) is associated most strongly with obesity. The waist/hip ratio may be a predictor in diabetes and heart disease. DM II is also agssociated with hypertension - they may both be part of "Syndrome X". The 403 subjects were the ones who were actually screened for diabetes. Glycosolated hemoglobin > 7.0 is usually taken as a positive diagnosis of diabetes.
@@ -32,7 +32,7 @@ data$male <- ifelse(data$gender=="male", 1, 0)
 str(data)
 ```
 
-## Fallegar töflur
+## Fallegar töflur {-}
 Til þess að búa til aðlaðandi html töflur fyrir þetta skjal eru hráar töflur settar í pípu til `knitr::kable`. Einnig nota ég valdar skipanir úr `kableExtra` eins og `kable_styling(full_width = F)` til þess að hindra það að lítil tafla sé teygð þvert yfir síðuna, og `add_header_above()` til þess að bæta við dálkaheiti ofan við önnur dálkaheiti. Þessum skipunum má vel sleppa.
 
 

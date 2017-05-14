@@ -62,5 +62,14 @@ regression_table(variables = c("scale(waist)", "(chol>250)", "(hdl<30)", "weight
   add_header_above(c(" " = 2, "HbA1c > 7.5%" = 3))
 ```
 
+## Dæmi 4
+Það er mjög auðvelt að takmarka niðurstöður við ákveðinn undirhóp með `data=subset(...)`. Hér er sama tafla og í dæminu að ofan, en takmarkað við þá sem eru yngri en 50 ára.
+
+```{r}
+regression_table(variables = c("scale(waist)", "(chol>250)", "(hdl<30)", "weight"), outcome = "(glyhb>7.5)", covariates = c("age", "gender"), model_type = "logistic", data = subset(data, age < 50)) %>%
+  kable(align='c', caption = "Each model adjusted for age and sex") %>%
+  kable_styling(full_width = F) %>%
+  add_header_above(c(" " = 2, "HbA1c > 7.5%" = 3))
+```
 
 
