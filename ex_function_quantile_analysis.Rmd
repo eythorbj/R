@@ -38,7 +38,7 @@ quantile_analysis(variable = "waist",
   add_header_above(c(" "=2, "Diabetes mellitus" = 5))
 ```
 
-Dálkarnir í töflunni að ofan (frá vinstri til hægri) sýna fimmtunga (fyrsti hefur minnst kviðarummál), fjölda í hverjum fimmtungi, hlutfall (pósentur) með sykursýki í hverjum fimmtungi, OR reiknað miðað við fyrsta fimmtung (merktur með "ref", *reference*), svo neðri og efri mörk 95% öryggisbils fyrir OR og loks p-gildi.
+Dálkarnir í töflunni að ofan (frá vinstri til hægri) sýna fimmtunga (fyrsti hefur minnst kviðarummál), fjölda í hverjum fimmtungi, hlutfall (prósentur) með sykursýki í hverjum fimmtungi, OR reiknað miðað við fyrsta fimmtung (merktur með "ref", *reference*), svo neðri og efri mörk 95% öryggisbils fyrir OR og loks p-gildi.
 
 Skoðum betur hvernig fimmtungar voru skilgreindir í fallinu með `cut2`, hér frá grunni þar sem fallið býr aðeins til fimmtungana tímabundið og breytir ekki upphaflegu gagnasettinu.
 
@@ -60,7 +60,8 @@ quantile_analysis(variable = "waist",
 ```
 
 ## Dæmi 3
-Skoðum HDL-kólesteról eftir þriðjungum sykraðs hemóglóbíns. ATH þetta er samfelld breyta svo í samanburði milli fjórðunga fáum við beinan mismun í óleiðréttu líkani.
+Skoðum HDL-kólesteról eftir fjórðungum sykraðs hemóglóbíns. Þar sem svarbreytan er samfelld er hallatalan í línulega líkaninu jöfn mismuninum á meðaltölum þegar fjórðungarnir eru bornir saman. Í óleiðréttu líkaninu að neðan er þetta beinn mismunur milli meðaltalanna í töflunni. Það yrði þó ekki raunin ef leiðrétt væri fyrir öðrum svarbreytum.
+
 ```{r}
 quantile_analysis(variable = "glyhb",
                   n_quantiles = 4,
