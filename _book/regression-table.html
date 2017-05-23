@@ -25,7 +25,7 @@
 <meta name="author" content="Eyþór Björnsson">
 
 
-<meta name="date" content="2017-05-14">
+<meta name="date" content="2017-05-20">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -178,7 +178,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <?xml version="1.0" encoding="UTF-8"?>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-13">Table 2.1: </span>Unadjusted model
+<span id="tab:unnamed-chunk-9">Table 2.1: </span>Unadjusted model
 </caption>
 <thead>
 <tr>
@@ -234,7 +234,7 @@ waist
 <?xml version="1.0" encoding="UTF-8"?>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-14">Table 2.2: </span>Unadjusted models
+<span id="tab:unnamed-chunk-10">Table 2.2: </span>Unadjusted models
 </caption>
 <thead>
 <tr>
@@ -327,7 +327,7 @@ hdl
 <?xml version="1.0" encoding="UTF-8"?>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-15">Table 2.3: </span>Multivariate model
+<span id="tab:unnamed-chunk-11">Table 2.3: </span>Multivariate model
 </caption>
 <thead>
 <tr>
@@ -411,20 +411,21 @@ gendermale
 </table>
 <p>Ef við tilgreinum fleiri breytur í <code>variables</code> fáum við fylgni fyrir hverja og eina þeirra við sykrað hemógóbín, þar sem leiðrétt fyrir aldri og kyni hverju sinni.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">regression_table</span>(<span class="dt">variables =</span> <span class="kw">c</span>(<span class="st">&quot;waist&quot;</span>, <span class="st">&quot;chol&quot;</span>, <span class="st">&quot;hdl&quot;</span>, <span class="st">&quot;weight&quot;</span>), <span class="dt">outcome =</span> <span class="st">&quot;glyhb&quot;</span>, <span class="dt">covariates =</span> <span class="kw">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;gender&quot;</span>), <span class="dt">model_type =</span> <span class="st">&quot;linear&quot;</span>, <span class="dt">data =</span> data) %&gt;%
-<span class="st">  </span><span class="kw">kable</span>(<span class="dt">align=</span><span class="st">&#39;c&#39;</span>, <span class="dt">caption =</span> <span class="st">&quot;Each model adjusted for age and sex&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">kable</span>(<span class="dt">align=</span><span class="st">&#39;c&#39;</span>, <span class="dt">caption =</span> <span class="st">&quot;Associations with HbA1c (%)&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">full_width =</span> F) %&gt;%
-<span class="st">  </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;HbA1c (%)&quot;</span> =<span class="st"> </span><span class="dv">3</span>))</code></pre></div>
+<span class="st">  </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;HbA1c (%)[note]&quot;</span> =<span class="st"> </span><span class="dv">3</span>)) %&gt;%
+<span class="st">  </span><span class="kw">add_footnote</span>(<span class="kw">c</span>(<span class="st">&quot;Each model is adjusted for age and sex&quot;</span>))</code></pre></div>
 <?xml version="1.0" encoding="UTF-8"?>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-16">Table 2.4: </span>Each model adjusted for age and sex
+<span id="tab:unnamed-chunk-12">Table 2.4: </span>Associations with HbA1c (%)
 </caption>
 <thead>
 <tr>
 <th style="text-align:center;" colspan="2">
 </th>
 <th style="text-align:center;" colspan="3">
-HbA1c (%)
+HbA1c (%)<sup>a</sup>
 </th>
 </tr>
 <tr>
@@ -515,26 +516,34 @@ weight
 </td>
 </tr>
 </tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border:0;" colspan="100%">
+<sup>a</sup> Each model is adjusted for age and sex
+</td>
+</tr>
+</tfoot>
 </table>
 </div>
 <div id="dmi-3-1" class="section level2">
 <h2><span class="header-section-number">2.6</span> Dæmi 3</h2>
 <p>Hægt er að skilgreina breyturnar á sama hátt og þegar unnið er með <code>lm</code> og <code>glm</code>. T.d. má staðla breytu með <code>scale()</code> (þar sem einingin jafngildir einu staðalfráviki) eða umbreyta samfelldri breytu í tvíkosta breytu með því að tilgreina þröskuld.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">regression_table</span>(<span class="dt">variables =</span> <span class="kw">c</span>(<span class="st">&quot;scale(waist)&quot;</span>, <span class="st">&quot;(chol&gt;250)&quot;</span>, <span class="st">&quot;(hdl&lt;30)&quot;</span>, <span class="st">&quot;weight&quot;</span>), <span class="dt">outcome =</span> <span class="st">&quot;(glyhb&gt;7.5)&quot;</span>, <span class="dt">covariates =</span> <span class="kw">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;gender&quot;</span>), <span class="dt">model_type =</span> <span class="st">&quot;logistic&quot;</span>, <span class="dt">data =</span> data) %&gt;%
-<span class="st">  </span><span class="kw">kable</span>(<span class="dt">align=</span><span class="st">&#39;c&#39;</span>, <span class="dt">caption =</span> <span class="st">&quot;Each model adjusted for age and sex&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">kable</span>(<span class="dt">align=</span><span class="st">&#39;c&#39;</span>, <span class="dt">caption =</span> <span class="st">&quot;Associations with HbA1c above 7.5%&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">full_width =</span> F) %&gt;%
-<span class="st">  </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;HbA1c &gt; 7.5%&quot;</span> =<span class="st"> </span><span class="dv">3</span>))</code></pre></div>
+<span class="st">  </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;HbA1c &gt; 7.5%[note]&quot;</span> =<span class="st"> </span><span class="dv">3</span>)) %&gt;%
+<span class="st">   </span><span class="kw">add_footnote</span>(<span class="kw">c</span>(<span class="st">&quot;Each model is adjusted for age and sex&quot;</span>))</code></pre></div>
 <?xml version="1.0" encoding="UTF-8"?>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-17">Table 2.5: </span>Each model adjusted for age and sex
+<span id="tab:unnamed-chunk-13">Table 2.5: </span>Associations with HbA1c above 7.5%
 </caption>
 <thead>
 <tr>
 <th style="text-align:center;" colspan="2">
 </th>
 <th style="text-align:center;" colspan="3">
-HbA1c &gt; 7.5%
+HbA1c &gt; 7.5%<sup>a</sup>
 </th>
 </tr>
 <tr>
@@ -625,26 +634,34 @@ weight
 </td>
 </tr>
 </tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border:0;" colspan="100%">
+<sup>a</sup> Each model is adjusted for age and sex
+</td>
+</tr>
+</tfoot>
 </table>
 </div>
 <div id="dmi-4" class="section level2">
 <h2><span class="header-section-number">2.7</span> Dæmi 4</h2>
 <p>Það er mjög auðvelt að takmarka niðurstöður við ákveðinn undirhóp með <code>data=subset(...)</code>. Hér er sama tafla og í dæminu að ofan, en takmarkað við þá sem eru yngri en 50 ára.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">regression_table</span>(<span class="dt">variables =</span> <span class="kw">c</span>(<span class="st">&quot;scale(waist)&quot;</span>, <span class="st">&quot;(chol&gt;250)&quot;</span>, <span class="st">&quot;(hdl&lt;30)&quot;</span>, <span class="st">&quot;weight&quot;</span>), <span class="dt">outcome =</span> <span class="st">&quot;(glyhb&gt;7.5)&quot;</span>, <span class="dt">covariates =</span> <span class="kw">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;gender&quot;</span>), <span class="dt">model_type =</span> <span class="st">&quot;logistic&quot;</span>, <span class="dt">data =</span> <span class="kw">subset</span>(data, age &lt;<span class="st"> </span><span class="dv">50</span>)) %&gt;%
-<span class="st">  </span><span class="kw">kable</span>(<span class="dt">align=</span><span class="st">&#39;c&#39;</span>, <span class="dt">caption =</span> <span class="st">&quot;Each model adjusted for age and sex&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">kable</span>(<span class="dt">align=</span><span class="st">&#39;c&#39;</span>, <span class="dt">caption =</span> <span class="st">&quot;Associations with HbA1c above 7.5%&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">full_width =</span> F) %&gt;%
-<span class="st">  </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;HbA1c &gt; 7.5%&quot;</span> =<span class="st"> </span><span class="dv">3</span>))</code></pre></div>
+<span class="st">  </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;HbA1c &gt; 7.5%[note]&quot;</span> =<span class="st"> </span><span class="dv">3</span>)) %&gt;%
+<span class="st">   </span><span class="kw">add_footnote</span>(<span class="kw">c</span>(<span class="st">&quot;Each model is adjusted for age and sex&quot;</span>))</code></pre></div>
 <?xml version="1.0" encoding="UTF-8"?>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-18">Table 2.6: </span>Each model adjusted for age and sex
+<span id="tab:unnamed-chunk-14">Table 2.6: </span>Associations with HbA1c above 7.5%
 </caption>
 <thead>
 <tr>
 <th style="text-align:center;" colspan="2">
 </th>
 <th style="text-align:center;" colspan="3">
-HbA1c &gt; 7.5%
+HbA1c &gt; 7.5%<sup>a</sup>
 </th>
 </tr>
 <tr>
@@ -735,6 +752,13 @@ weight
 </td>
 </tr>
 </tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border:0;" colspan="100%">
+<sup>a</sup> Each model is adjusted for age and sex
+</td>
+</tr>
+</tfoot>
 </table>
 
 </div>

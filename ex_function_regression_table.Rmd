@@ -48,18 +48,20 @@ regression_table(variables = "waist", outcome = "glyhb", covariates = c("age", "
 Ef við tilgreinum fleiri breytur í `variables` fáum við fylgni fyrir hverja og eina þeirra við sykrað hemógóbín, þar sem leiðrétt fyrir aldri og kyni hverju sinni.
 ```{r}
 regression_table(variables = c("waist", "chol", "hdl", "weight"), outcome = "glyhb", covariates = c("age", "gender"), model_type = "linear", data = data) %>%
-  kable(align='c', caption = "Each model adjusted for age and sex") %>%
+  kable(align='c', caption = "Associations with HbA1c (%)") %>%
   kable_styling(full_width = F) %>%
-  add_header_above(c(" " = 2, "HbA1c (%)" = 3))
+  add_header_above(c(" " = 2, "HbA1c (%)[note]" = 3)) %>%
+  add_footnote(c("Each model is adjusted for age and sex"))
 ```
 
 ## Dæmi 3
 Hægt er að skilgreina breyturnar á sama hátt og þegar unnið er með `lm` og `glm`. T.d. má staðla breytu með `scale()` (þar sem einingin jafngildir einu staðalfráviki) eða umbreyta samfelldri breytu í tvíkosta breytu með því að tilgreina þröskuld.
 ```{r}
 regression_table(variables = c("scale(waist)", "(chol>250)", "(hdl<30)", "weight"), outcome = "(glyhb>7.5)", covariates = c("age", "gender"), model_type = "logistic", data = data) %>%
-  kable(align='c', caption = "Each model adjusted for age and sex") %>%
+  kable(align='c', caption = "Associations with HbA1c above 7.5%") %>%
   kable_styling(full_width = F) %>%
-  add_header_above(c(" " = 2, "HbA1c > 7.5%" = 3))
+  add_header_above(c(" " = 2, "HbA1c > 7.5%[note]" = 3)) %>%
+   add_footnote(c("Each model is adjusted for age and sex"))
 ```
 
 ## Dæmi 4
@@ -67,9 +69,10 @@ regression_table(variables = c("scale(waist)", "(chol>250)", "(hdl<30)", "weight
 
 ```{r}
 regression_table(variables = c("scale(waist)", "(chol>250)", "(hdl<30)", "weight"), outcome = "(glyhb>7.5)", covariates = c("age", "gender"), model_type = "logistic", data = subset(data, age < 50)) %>%
-  kable(align='c', caption = "Each model adjusted for age and sex") %>%
+  kable(align='c', caption = "Associations with HbA1c above 7.5%") %>%
   kable_styling(full_width = F) %>%
-  add_header_above(c(" " = 2, "HbA1c > 7.5%" = 3))
+  add_header_above(c(" " = 2, "HbA1c > 7.5%[note]" = 3)) %>%
+   add_footnote(c("Each model is adjusted for age and sex"))
 ```
 
 
